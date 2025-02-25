@@ -3,7 +3,8 @@ import styled, { css, keyframes } from "styled-components";
 
 const Face = styled.div<{ $color?: string; $rotate: string }>`
   background-color: ${(props) => props.$color};
-  font-size: xx-large;
+  font-size: 5em;
+  line-height: 50%;
   color: black;
   display: flex;
   width: 100px;
@@ -18,22 +19,22 @@ const Dice = ({ className }: { className?: string }) => {
   return (
     <div className={className}>
       <Face $color="teal" $rotate="1, 0, 0, 90deg">
-        1
+        •
       </Face>
       <Face $color="coral" $rotate="1, 0, 0, -90deg">
-        2
+        • •
       </Face>
       <Face $color="mediumorchid" $rotate="0, 1, 0, 90deg">
-        3
+        • • •
       </Face>
       <Face $color="plum" $rotate="0, 1, 0, -90deg">
-        4
+        • • • •
       </Face>
       <Face $color="deepskyblue" $rotate="1, 0, 0, 180deg">
-        5
+        ••• ••
       </Face>
       <Face $color="gold" $rotate="0, 0, 1, 0deg">
-        6
+        ••• •••
       </Face>
     </div>
   );
