@@ -55,21 +55,17 @@ const spin = keyframes`
   }
 `;
 
-const DiceContainer = ({ className }: { className?: string }) => {
-  return (
-    <div className={className} style={{ position: "relative" }}>
-      <RotatedDice />
-    </div>
-  );
-};
-
-const SpiningDice = styled(DiceContainer)`
+const SpiningDice = styled.div`
   animation: ${spin} 10s linear infinite;
   transform-style: preserve-3d;
 `;
 
 function VirtualDice() {
-  return <SpiningDice />;
+  return (
+    <SpiningDice>
+      <RotatedDice />
+    </SpiningDice>
+  );
 }
 
 export default VirtualDice;
