@@ -49,6 +49,7 @@ const spinAnimation = keyframes`
   }
 `;
 
+
 const rollAnimation = keyframes`
   from {
     transform: rotate3D(1,1,1,0deg);
@@ -71,6 +72,8 @@ const DiceAnimation = styled.div<{ $animation: string }>`
     if ($animation === "spin") {
       return css`
         animation: ${spinAnimation} 5s linear infinite;
+
+
       `;
     }
     if ($animation === "roll") {
