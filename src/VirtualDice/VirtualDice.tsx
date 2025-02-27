@@ -18,29 +18,29 @@ const Face = styled.div<{ $color?: string; $rotate: string }>`
 const Dice = ({ className }: { className?: string }) => {
   return (
     <div className={className}>
-      <Face $color="teal" $rotate="1, 0, 0, 90deg">
+      <Face $color="#61DAFB" $rotate="1, 0, 0, 90deg">
         •
       </Face>
-      <Face $color="coral" $rotate="1, 0, 0, -90deg">
+      <Face $color="#646CFF" $rotate="1, 0, 0, -90deg">
         • •
       </Face>
-      <Face $color="mediumorchid" $rotate="0, 1, 0, 90deg">
+      <Face $color="#FF8F00" $rotate="0, 1, 0, 90deg">
         • • •
       </Face>
-      <Face $color="plum" $rotate="0, 1, 0, -90deg">
+      <Face $color="#A7FF3A" $rotate="0, 1, 0, -90deg">
         • • • •
       </Face>
-      <Face $color="deepskyblue" $rotate="1, 0, 0, 180deg">
+      <Face $color="#FFEB3B" $rotate="1, 0, 0, 180deg">
         ••• ••
       </Face>
-      <Face $color="gold" $rotate="0, 0, 1, 0deg">
+      <Face $color="#F50057" $rotate="0, 0, 1, 0deg">
         ••• •••
       </Face>
     </div>
   );
 };
 
-const spin = keyframes`
+const spinAnimation = keyframes`
   from {
     transform: rotateY(0deg);
   }
@@ -49,7 +49,8 @@ const spin = keyframes`
   }
 `;
 
-const roll = keyframes`
+
+const rollAnimation = keyframes`
   from {
     transform: rotate3D(1,1,1,0deg);
   }
@@ -58,7 +59,7 @@ const roll = keyframes`
   }
 `;
 
-const RotatedDice = styled(Dice)<{ $x: number; $y: number }>`
+const DicePosition = styled(Dice)<{ $x: number; $y: number }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,16 +67,18 @@ const RotatedDice = styled(Dice)<{ $x: number; $y: number }>`
   transform-style: preserve-3d;
 `;
 
-const SpiningDice = styled.div<{ $animation: string }>`
+const DiceAnimation = styled.div<{ $animation: string }>`
   ${({ $animation }) => {
     if ($animation === "spin") {
       return css`
-        animation: ${spin} 5s linear infinite;
+        animation: ${spinAnimation} 5s linear infinite;
+
+
       `;
     }
     if ($animation === "roll") {
       return css`
-        animation: ${roll} 400ms linear infinite;
+        animation: ${rollAnimation} 400ms linear infinite;
       `;
     }
     return css`
@@ -107,9 +110,9 @@ const VirtualDice = () => {
       }}
       style={{ height: "200px", transform: "translate(0px, 100px)" }}
     >
-      <SpiningDice $animation={animation}>
-        <RotatedDice $x={rotation.x} $y={rotation.y}></RotatedDice>
-      </SpiningDice>
+      <DiceAnimation $animation={animation}>
+        <DicePosition $x={rotation.x} $y={rotation.y}></DicePosition>
+      </DiceAnimation>
     </div>
   );
 };
