@@ -8,7 +8,7 @@ A 3D animated dice roller built with **React**, **TypeScript**, and **Vite**. Cl
 
 [Live demo](https://storied-dodol-b12d81.netlify.app/)
 
-<video src='/video/VirtualDice-Demo.mp4'/>
+https://github.com/user-attachments/assets/43f6056e-4fa3-44b0-a42b-6956bd255c7a
 
 ## Features
 
