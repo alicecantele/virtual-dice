@@ -5,6 +5,7 @@ const Face = styled.div<{ $color?: string; $rotate: string }>`
   background-color: ${(props) => props.$color};
   font-size: 5em;
   line-height: 50%;
+  border: solid black 1px;
   color: black;
   display: flex;
   width: 100px;
@@ -15,28 +16,35 @@ const Face = styled.div<{ $color?: string; $rotate: string }>`
   transform: rotate3d(${(props) => props.$rotate}) translateZ(50px);
 `;
 
-const Dice = ({ className }: { className?: string }) => {
+const Container = styled.div`
+  height: 200px;
+  transform: translate(0px, 100px);
+  cursor: pointer;
+  user-select: none;
+`;
+
+const Dice = () => {
   return (
-    <div className={className}>
-      <Face $color="#61DAFB" $rotate="1, 0, 0, 90deg">
+    <>
+      <Face $color="#f94144" $rotate="1, 0, 0, 90deg">
         •
       </Face>
-      <Face $color="#646CFF" $rotate="1, 0, 0, -90deg">
+      <Face $color="#f3722c" $rotate="1, 0, 0, -90deg">
         • •
       </Face>
-      <Face $color="#FF8F00" $rotate="0, 1, 0, 90deg">
+      <Face $color="#f9c74f" $rotate="0, 1, 0, 90deg">
         • • •
       </Face>
-      <Face $color="#A7FF3A" $rotate="0, 1, 0, -90deg">
+      <Face $color="#90be6d" $rotate="0, 1, 0, -90deg">
         • • • •
       </Face>
-      <Face $color="#FFEB3B" $rotate="1, 0, 0, 180deg">
+      <Face $color="#43aa8b" $rotate="1, 0, 0, 180deg">
         ••• ••
       </Face>
-      <Face $color="#F50057" $rotate="0, 0, 1, 0deg">
+      <Face $color="#277da1" $rotate="0, 0, 1, 0deg">
         ••• •••
       </Face>
-    </div>
+    </>
   );
 };
 
@@ -58,7 +66,7 @@ const rollAnimation = keyframes`
   }
 `;
 
-const DicePosition = styled(Dice)<{ $x: number; $y: number }>`
+const DicePosition = styled.div<{ $x: number; $y: number }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,7 +100,6 @@ const VirtualDice = () => {
   const rollDice = () => {
     const x = 90 * Math.floor(4 * Math.random());
     const y = 90 * Math.floor(4 * Math.random());
-    console.log(x, y);
     setRotation({ x, y });
     setAnimation("roll");
     setTimeout(() => {
@@ -101,16 +108,17 @@ const VirtualDice = () => {
   };
 
   return (
-    <div
+    <Container
       onClick={() => {
         rollDice();
       }}
-      style={{ height: "200px", transform: "translate(0px, 100px)" }}
     >
       <DiceAnimation $animation={animation}>
-        <DicePosition $x={rotation.x} $y={rotation.y}></DicePosition>
+        <DicePosition $x={rotation.x} $y={rotation.y}>
+          <Dice />
+        </DicePosition>
       </DiceAnimation>
-    </div>
+    </Container>
   );
 };
 
