@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 
-const Face = styled.div<{ $color?: string; $rotate: string }>`
-  background-color: ${(props) => props.$color};
+const Face = styled.div<{ color?: string; rotate: string }>`
+  background-color: ${(props) => props.color};
   font-size: 5em;
   line-height: 50%;
   border: solid black 1px;
@@ -13,7 +13,7 @@ const Face = styled.div<{ $color?: string; $rotate: string }>`
   align-items: center;
   justify-content: center;
   position: absolute;
-  transform: rotate3d(${(props) => props.$rotate}) translateZ(50px);
+  transform: rotate3d(${(props) => props.rotate}) translateZ(50px);
 `;
 
 const Container = styled.div`
@@ -26,22 +26,22 @@ const Container = styled.div`
 const Dice = () => {
   return (
     <>
-      <Face $color="#f94144" $rotate="1, 0, 0, 90deg">
+      <Face color="#f94144" rotate="1, 0, 0, 90deg">
         •
       </Face>
-      <Face $color="#f3722c" $rotate="1, 0, 0, -90deg">
+      <Face color="#f3722c" rotate="1, 0, 0, -90deg">
         • •
       </Face>
-      <Face $color="#f9c74f" $rotate="0, 1, 0, 90deg">
+      <Face color="#f9c74f" rotate="0, 1, 0, 90deg">
         • • •
       </Face>
-      <Face $color="#90be6d" $rotate="0, 1, 0, -90deg">
+      <Face color="#90be6d" rotate="0, 1, 0, -90deg">
         • • • •
       </Face>
-      <Face $color="#43aa8b" $rotate="1, 0, 0, 180deg">
+      <Face color="#43aa8b" rotate="1, 0, 0, 180deg">
         ••• ••
       </Face>
-      <Face $color="#277da1" $rotate="0, 0, 1, 0deg">
+      <Face color="#277da1" rotate="0, 0, 1, 0deg">
         ••• •••
       </Face>
     </>
@@ -66,22 +66,22 @@ const rollAnimation = keyframes`
   }
 `;
 
-const DicePosition = styled.div<{ $x: number; $y: number }>`
+const DicePosition = styled.div<{ x: number; y: number }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: ${({ $x, $y }) => `rotateX(${$x}deg) rotateY(${$y}deg)`};
+  transform: ${({ x, y }) => `rotateX(${x}deg) rotateY(${y}deg)`};
   transform-style: preserve-3d;
 `;
 
-const DiceAnimation = styled.div<{ $animation: string }>`
-  ${({ $animation }) => {
-    if ($animation === "spin") {
+const DiceAnimation = styled.div<{ animation: string }>`
+  ${({ animation }) => {
+    if (animation === "spin") {
       return css`
         animation: ${spinAnimation} 5s linear infinite;
       `;
     }
-    if ($animation === "roll") {
+    if (animation === "roll") {
       return css`
         animation: ${rollAnimation} 400ms linear infinite;
       `;
@@ -113,8 +113,8 @@ const VirtualDice = () => {
         rollDice();
       }}
     >
-      <DiceAnimation $animation={animation}>
-        <DicePosition $x={rotation.x} $y={rotation.y}>
+      <DiceAnimation animation={animation}>
+        <DicePosition x={rotation.x} y={rotation.y}>
           <Dice />
         </DicePosition>
       </DiceAnimation>

@@ -5,7 +5,7 @@ import VirtualDice from "./components/VirtualDice";
 function App() {
   return (
     <>
-      <h1>Click on the dice to roll it!</h1>
+      <h1>Click the dice to roll!</h1>
       <VirtualDice />
       <Footer />
     </>
